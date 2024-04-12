@@ -40,7 +40,7 @@
     let html: string = '';
 
     /* find all articles and loop through each of them */
-    const articles = document.querySelectorAll(selectorArticle + customSelector) as NodeListOf<HTMLUListElement>
+    const articles = document.querySelectorAll(selectorArticle + customSelector) as NodeListOf<HTMLElement>
 
     for (let article of articles) {
 
