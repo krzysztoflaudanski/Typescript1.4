@@ -43,19 +43,21 @@
     const articles = document.querySelectorAll(selectorArticle + customSelector) as NodeListOf<HTMLElement>
 
     for (let article of articles) {
+      if (article) {
+        /* find id of the artcle */
+        const articleID = article.getAttribute('id') as string;
 
-      /* find id of the article */
-      const articleID = article.getAttribute('id') as string;
+        /* find elem that holds the title and retrieve it */
+        const titleElement = document.querySelector(selectorTitle) as HTMLElement
+        if (titleElement) {
+          const articleTitle = titleElement.innerHTML as string;
+          /* create HTML of the link */
+          const linkHTML: string = '<li><a href="#' + articleID + '"><span>' + articleTitle + '</span></a></li>';
 
-      /* find elem that holds the title and retrieve it */
-
-      const articleTitle = article.querySelector(selectorTitle).innerHTML as string;
-      /* create HTML of the link */
-      const linkHTML: string = '<li><a href="#' + articleID + '"><span>' + articleTitle + '</span></a></li>';
-
-      /* insert link into html variable */
-      html = html + linkHTML;
-
+          /* insert link into html variable */
+          html = html + linkHTML;
+        }
+      }
     }
 
     /* add all the links from html variable to titleList */
@@ -64,7 +66,9 @@
     /* find created links and add listeners to them */
     const links = document.querySelectorAll('.titles a') as NodeListOf<HTMLLinkElement>;
     for (let link of links) {
-      link.addEventListener('click', titleClickHandler);
+      if (link) {
+        link.addEventListener('click', titleClickHandler);
+      }
     }
   }
 
